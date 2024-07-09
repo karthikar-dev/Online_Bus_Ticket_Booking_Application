@@ -1,0 +1,54 @@
+# Server Configuration
+server:
+  port: 8082
+
+# H2 Database Configuration
+spring:
+  datasource:
+    url: jdbc:h2:mem:obmsdb
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+
+    # Enable SQL initialization
+    initialization-mode: always
+
+  # Enable H2 console (optional, for debugging)
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+# Swagger Configuration
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /api-docs
+
+# Logging Configuration
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+
+
+# Only useful in testing - controller, not for RestControllers
+# Thymeleaf Configuration
+thymeleaf:
+  prefix: classpath:/templates/
+  suffix: .html
+  cache: false
+resources:
+    static-locations: classpath:/static/
+
+  # Optional: Custom Application Properties
+app:
+    name: Online Bus Ticket Booking Management System Application
+    description: OBMS project for Spring Boot
